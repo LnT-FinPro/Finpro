@@ -47,7 +47,6 @@ export default function ProductShow({ product, auth }: Props) {
         addToCart(cartRoute.store().url, {
             preserveScroll: true,
             onSuccess: () => {
-                // You can add a toast notification here
             },
         });
     };

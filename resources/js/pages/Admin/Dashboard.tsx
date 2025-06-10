@@ -1,21 +1,16 @@
-// resources/js/Pages/Admin/Dashboard.tsx
 import React from 'react';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-// HAPUS: import AppLayout from '@/layouts/app-layout'; // Tidak perlu jika AdminLayout yang digunakan
-import { type BreadcrumbItem } from '@/types'; // Breadcrumbs bisa dikelola di AdminLayout atau di sini
-import { Head, usePage } from '@inertiajs/react'; // Import usePage
-import { PageProps } from '@/types'; // Import PageProps
-import AdminLayout from '@/layouts/AdminLayout'; // Import AdminLayout untuk persistent layout
+import { type BreadcrumbItem } from '@/types'; 
+import { Head, usePage } from '@inertiajs/react'; 
+import { PageProps } from '@/types'; 
 
 export default function AdminDashboard() {
-    const { auth } = usePage<PageProps>().props; // Bisa akses auth jika perlu info user
+    const { auth } = usePage<PageProps>().props; 
 
     return (
-        // TIDAK ADA <AppLayout> DI SINI
         <>
-            <Head title="Admin Dashboard" /> {/* Judul spesifik halaman */}
-            {/* Konten utama halaman dashboard */}
-            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl"> {/* p-4 mungkin sudah ada di AdminLayout */}
+            <Head title="Admin Dashboard" />
+            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl"> 
                 <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
                     Admin Dashboard
                 </h1>
@@ -41,16 +36,3 @@ export default function AdminDashboard() {
         </>
     );
 }
-
-// Menetapkan AdminLayout sebagai persistent layout untuk halaman ini
-AdminDashboard.layout = (page: React.ReactElement) => (
-    <AdminLayout
-        header={
-            <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Dashboard Overview {/* Header bisa disesuaikan per halaman */}
-            </h2>
-        }
-    >
-        {page}
-    </AdminLayout>
-);

@@ -7,7 +7,6 @@ import products from '@/routes/products';
 import { login } from '@/routes';
 import orders from '@/routes/orders';
 
-// Enhanced Cart Item Row Component
 const CartItemRow = ({ item }: { item: CartItem }) => {
     const { data, setData, put, delete: destroy, processing, errors } = useForm({
         quantity: item.quantity,

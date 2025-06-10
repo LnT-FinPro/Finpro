@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $userId = Auth::id();
-        $user = User::findOrFail($userId); // Dapatkan instance user
+        $user = User::findOrFail($userId); 
         $cartItems = Cart::with('product')->where('user_id', $userId)->get();
 
         if ($cartItems->isEmpty()) {
@@ -43,7 +43,6 @@ class OrderController extends Controller
                 $totalPrice += $item->product->price * $item->quantity;
             }
 
-            // Validasi saldo pengguna
             if ($user->money < $totalPrice) {
                 DB::rollBack();
                 return redirect()->route('cart.index')->with('error', 'Not enough money to place the order. Please top up your balance.');
@@ -65,7 +64,6 @@ class OrderController extends Controller
                 $item->product->decrement('stock', $item->quantity);
             }
 
-            // Kurangi saldo pengguna
             $user->decrement('money', $totalPrice);
 
             Cart::where('user_id', $userId)->delete();
@@ -75,7 +73,6 @@ class OrderController extends Controller
             return redirect()->route('orders.show', $order->id)->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
-            // Log error $e->getMessage()
             return redirect()->route('cart.index')->with('error', 'Failed to place order. Please try again. ' . $e->getMessage());
         }
     }
@@ -83,12 +80,6 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         if ($order->user_id !== Auth::id()) {
-             // Jika Admin ingin melihat semua order, perlu logika berbeda atau endpoint berbeda
-            // if (Auth::check() && Auth::user()->isAdmin()) {
-            //    // Admin boleh lihat
-            // } else {
-            //    abort(403, 'Unauthorized action.');
-            // }
             abort(403, 'Unauthorized action.');
         }
 
@@ -96,7 +87,6 @@ class OrderController extends Controller
         return Inertia::render('Orders/Show', ['order' => $order]);
     }
 
-    // Metode untuk admin melihat semua order (Contoh)
     public function allOrders()
     {
         if (!Auth::check() || !Auth::user()->isAdmin()) {

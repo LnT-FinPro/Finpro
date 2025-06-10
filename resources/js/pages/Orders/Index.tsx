@@ -8,10 +8,7 @@ import routeOrders from '@/routes/orders';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { InvoiceDocument } from '@/components/InvoiceDocument';
 
-// Enhanced Order Card Component
 const OrderCard = ({ order, index }: { order: any; index: number }) => {
-    // In a real app, ensure `order` prop includes user details from the backend.
-    // This is a fallback for demonstration purposes.
     if (!order.user) {
         order.user = { name: 'Customer Name', email: 'customer@example.com' };
     }

@@ -4,7 +4,6 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import React, { FormEventHandler } from 'react';
 import products from '@/routes/products';
 
-// Asumsi komponen UI ini sudah ada
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
