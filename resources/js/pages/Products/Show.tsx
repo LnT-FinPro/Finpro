@@ -1,4 +1,3 @@
-// src/Pages/Products/Show.tsx
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link, usePage, useForm, router } from '@inertiajs/react';
 import { type ProductDetailPageProps, type BreadcrumbItem, Review as ReviewType, User } from '@/types';
@@ -26,7 +25,6 @@ import {
     TrendingUp
 } from 'lucide-react';
 
-// Impor objek rute Anda
 import reviews from '@/routes/reviews';
 import { login } from '@/routes';
 import cart from '@/routes/cart';
